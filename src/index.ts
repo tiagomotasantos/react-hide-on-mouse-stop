@@ -1,3 +1,1 @@
-export * from './AudioVisualizer';
-export * from './types';
-export * from './constants';
+export { Hide } from './Hide';
