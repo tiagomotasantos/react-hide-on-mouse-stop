@@ -1,7 +1,6 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import { css, cx } from '@emotion/css';
-
-let timer: NodeJS.Timeout;
+import { useHide } from './useHide';
 
 interface HideProps {
   children: ReactElement;
@@ -9,47 +8,32 @@ interface HideProps {
   delay?: number;
   defaultTransition?: boolean;
   removeFromDOM?: boolean;
+  hideCursor?: boolean;
+  initialHide?: boolean;
+  showOnlyOnContainerHover?: boolean;
 }
 
 export const Hide = ({
   children,
   className,
-  delay = 2000,
+  delay,
+  hideCursor,
+  initialHide,
+  showOnlyOnContainerHover,
   defaultTransition = false,
   removeFromDOM = false,
 }: HideProps) => {
-  const [hide, setHide] = useState(false);
-  const [hover, setHover] = useState(false);
-  const onMouseEnter = useCallback(() => setHover(true), [setHover]);
-  const onMouseLeave = useCallback(() => setHover(false), [setHover]);
-  const onMouseMove = useCallback(() => {
-    clearTimeout(timer);
-
-    if (hide) {
-      setHide(!hide);
-      document.body.style.cursor = 'default';
-    }
-
-    timer = setTimeout(() => {
-      if (!hover) {
-        setHide(true);
-        document.body.style.cursor = 'none';
-      }
-    }, delay);
-  }, [hide, hover, setHide]);
-
+  const [hide, onMouseEnter, onMouseLeave] = useHide({
+    delay,
+    hideCursor,
+    initialHide,
+    showOnlyOnContainerHover,
+  });
   const defaultStyles = {
+    [styles.wrapper]: true,
     [styles.transition]: defaultTransition,
     [styles.hide]: hide,
   };
-
-  useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-    };
-  }, [onMouseMove]);
 
   if (removeFromDOM && hide) {
     return null;
@@ -57,7 +41,7 @@ export const Hide = ({
 
   return (
     <div
-      className={cx(className, defaultStyles)}
+      className={cx(defaultStyles, className)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -67,6 +51,10 @@ export const Hide = ({
 };
 
 const styles = {
+  wrapper: css`
+    height: fit-content;
+    width: fit-content;
+  `,
   transition: css`
     transition: opacity 0.8s cubic-bezier(0.64, 0.63, 0.39, 1.19);
   `,
