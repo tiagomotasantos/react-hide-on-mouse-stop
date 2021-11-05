@@ -1,14 +1,23 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { css, cx } from '@emotion/css';
 
-const DELAY = 2000;
 let timer: NodeJS.Timeout;
 
 interface HideProps {
-  children: ReactNode;
+  children: ReactElement;
+  className?: string;
+  delay?: number;
+  defaultTransition?: boolean;
+  removeFromDOM?: boolean;
 }
 
-export const Hide = ({ children }: HideProps) => {
+export const Hide = ({
+  children,
+  className,
+  delay = 2000,
+  defaultTransition = false,
+  removeFromDOM = false,
+}: HideProps) => {
   const [hide, setHide] = useState(false);
   const [hover, setHover] = useState(false);
   const onMouseEnter = useCallback(() => setHover(true), [setHover]);
@@ -26,8 +35,13 @@ export const Hide = ({ children }: HideProps) => {
         setHide(true);
         document.body.style.cursor = 'none';
       }
-    }, DELAY);
+    }, delay);
   }, [hide, hover, setHide]);
+
+  const defaultStyles = {
+    [styles.transition]: defaultTransition,
+    [styles.hide]: hide,
+  };
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
@@ -36,28 +50,25 @@ export const Hide = ({ children }: HideProps) => {
       window.removeEventListener('mousemove', onMouseMove);
     };
   }, [onMouseMove]);
+
+  if (removeFromDOM && hide) {
+    return null;
+  }
+
   return (
     <div
-      className={cx(styles.wrapper, { [styles.hide]: hide })}
+      className={cx(className, defaultStyles)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {children}
     </div>
-  )
+  );
 };
 
 const styles = {
-  wrapper: css`
-    left: 0;
-    position: fixed;
-    top: 24px;
+  transition: css`
     transition: opacity 0.8s cubic-bezier(0.64, 0.63, 0.39, 1.19);
-    z-index: 2;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
   `,
   hide: css`
     opacity: 0;
