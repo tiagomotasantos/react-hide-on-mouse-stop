@@ -1,2 +1,2 @@
 export { Hide } from './Hide';
-import { useHide } from './useHide';
+export { useHide } from './useHide';
