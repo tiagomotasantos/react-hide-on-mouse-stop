@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { css, cx } from '@emotion/css';
 import { useHide } from './useHide';
 
 interface HideProps {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
   className?: string;
   delay?: number;
   defaultTransition?: boolean;
@@ -41,6 +41,7 @@ export const Hide = ({
 
   return (
     <div
+      data-testid='hide-wrapper'
       className={cx(defaultStyles, className)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
