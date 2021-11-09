@@ -2,21 +2,21 @@ import { useCallback, useEffect, useState } from 'react';
 
 let timer: NodeJS.Timeout;
 
-interface UseHideProps {
+interface UseHideOnMouseStopProps {
   delay?: number;
   hideCursor?: boolean;
   initialHide?: boolean;
   showOnlyOnContainerHover?: boolean;
 }
 
-type UseHideReturn = [boolean, () => void, () => void];
+type UseHideOnMouseStopReturn = [boolean, () => void, () => void];
 
-export const useHide = ({
+export const useHideOnMouseStop = ({
   delay = 2000,
   hideCursor = false,
   initialHide = false,
   showOnlyOnContainerHover = false,
-}: UseHideProps): UseHideReturn => {
+}: UseHideOnMouseStopProps): UseHideOnMouseStopReturn => {
   const [hide, setHide] = useState(initialHide);
   const [hover, setHover] = useState(false);
   const toggleVisibility = useCallback((hide: boolean, cursor: string) => {

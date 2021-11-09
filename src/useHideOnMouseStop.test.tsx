@@ -2,9 +2,9 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
 import { renderHook } from '@testing-library/react-hooks';
-import { useHide } from './useHide';
+import { useHideOnMouseStop } from './useHideOnMouseStop';
 
-describe('useHide', () => {
+describe('useHideOnMouseStop', () => {
   const delay = 1000;
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('useHide', () => {
   });
 
   it('hides component after delay', () => {
-    const { result } = renderHook(() => useHide({ delay }));
+    const { result } = renderHook(() => useHideOnMouseStop({ delay }));
     const [hide] = result.current;
 
     expect(hide).toBe(false);
@@ -33,7 +33,7 @@ describe('useHide', () => {
   });
 
   it('doesn\'t hide component if delay was not reached', () => {
-    const { result } = renderHook(() => useHide({ delay }));
+    const { result } = renderHook(() => useHideOnMouseStop({ delay }));
     const [hide] = result.current;
 
     expect(hide).toBe(false);
@@ -50,7 +50,7 @@ describe('useHide', () => {
   });
 
   it('doesn\'t hide component if mouse is hovering', () => {
-    const { result } = renderHook(() => useHide({ delay }));
+    const { result } = renderHook(() => useHideOnMouseStop({ delay }));
     const [_, onMouseEnter, onMouseLeave] = result.current;
     
     render(
@@ -75,7 +75,7 @@ describe('useHide', () => {
   });
 
   it('hides cursor', () => {
-    const { result } = renderHook(() => useHide({ delay, hideCursor: true }));
+    const { result } = renderHook(() => useHideOnMouseStop({ delay, hideCursor: true }));
     const [hide] = result.current;
 
     expect(hide).toBe(false);
@@ -94,7 +94,7 @@ describe('useHide', () => {
   });
 
   it('set initial hide', () => {
-    const { result } = renderHook(() => useHide({ delay, initialHide: true }));
+    const { result } = renderHook(() => useHideOnMouseStop({ delay, initialHide: true }));
     const [hide] = result.current;
 
     expect(hide).toBe(true);

@@ -1,5 +1,5 @@
 {
-  "name": "react-hide",
+  "name": "react-hide-on-mouse-stop",
   "version": "1.0.0",
   "private": false,
   "main": "dist/index.js",
@@ -57,13 +57,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tiagomotasantos/react-hide.git"
+    "url": "git+https://github.com/tiagomotasantos/react-hide-on-mouse-stop.git"
   },
   "description": "Hides content after the mouse stops moving for a certain amount of time.",
   "bugs": {
-    "url": "https://github.com/tiagomotasantos/react-hide/issues"
+    "url": "https://github.com/tiagomotasantos/react-hide-on-mouse-stop/issues"
   },
-  "homepage": "https://github.com/tiagomotasantos/react-hide#readme",
+  "homepage": "https://github.com/tiagomotasantos/react-hide-on-mouse-stop#readme",
   "author": "Tiago Mota Santos",
   "license": "MIT"
 }

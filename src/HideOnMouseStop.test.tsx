@@ -1,9 +1,8 @@
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
-import { fireEvent } from '@testing-library/dom';
-import { Hide } from './Hide';
+import { render, screen } from '@testing-library/react';
+import { HideOnMouseStop } from './HideOnMouseStop';
 
-describe('Hide', () => {
+describe('HideOnMouseStop', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -15,9 +14,9 @@ describe('Hide', () => {
   it('renders children correctly', () => {
     const text = 'test children';
     render(
-      <Hide>
+      <HideOnMouseStop>
         <div>{text}</div>
-      </Hide>
+      </HideOnMouseStop>
     );
 
     expect(screen.getByText(text).textContent).toEqual(text);
@@ -25,10 +24,10 @@ describe('Hide', () => {
 
   it('renders custom class', () => {
     render(
-      <Hide className="custom-class">
+      <HideOnMouseStop className="custom-class">
         <span>1</span>
         <span>2</span>
-      </Hide>
+      </HideOnMouseStop>
     );
 
     expect(screen.getByTestId('hide-wrapper').className).toContain('custom-class');
@@ -36,10 +35,10 @@ describe('Hide', () => {
 
   it('removes content from DOM when hide is true', () => {
     render(
-      <Hide initialHide removeFromDOM>
+      <HideOnMouseStop initialHide removeFromDOM>
         <span>1</span>
         <span>2</span>
-      </Hide>
+      </HideOnMouseStop>
     );
 
     expect(screen.queryByTestId('hide-wrapper')).toBeNull();

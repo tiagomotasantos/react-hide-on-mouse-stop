@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { css, cx } from '@emotion/css';
-import { useHide } from './useHide';
+import { useHideOnMouseStop } from './useHideOnMouseStop';
 
-interface HideProps {
+interface HideOnMouseStopProps {
   children: ReactElement | ReactElement[];
   className?: string;
   delay?: number;
@@ -13,7 +13,7 @@ interface HideProps {
   showOnlyOnContainerHover?: boolean;
 }
 
-export const Hide = ({
+export const HideOnMouseStop = ({
   children,
   className,
   delay,
@@ -22,8 +22,8 @@ export const Hide = ({
   showOnlyOnContainerHover,
   defaultTransition = false,
   removeFromDOM = false,
-}: HideProps) => {
-  const [hide, onMouseEnter, onMouseLeave] = useHide({
+}: HideOnMouseStopProps) => {
+  const [hide, onMouseEnter, onMouseLeave] = useHideOnMouseStop({
     delay,
     hideCursor,
     initialHide,

@@ -1,2 +1,2 @@
-export { Hide } from './Hide';
-export { useHide } from './useHide';
+export { HideOnMouseStop } from './HideOnMouseStop';
+export { useHideOnMouseStop } from './useHideOnMouseStop';
