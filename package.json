@@ -40,7 +40,8 @@
   "scripts": {
     "build": "npm run clean && tsc -p tsconfig.json",
     "clean": "rimraf dist",
-    "dev": "tsc -p tsconfig.json --watch"
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "jest"
   },
   "browserslist": {
     "production": [
