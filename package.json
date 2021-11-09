@@ -64,6 +64,13 @@
     "url": "https://github.com/tiagomotasantos/react-hide-on-mouse-stop/issues"
   },
   "homepage": "https://github.com/tiagomotasantos/react-hide-on-mouse-stop#readme",
+  "keywords": [
+    "react",
+    "hide",
+    "mouse",
+    "mouse stop",
+    "hide on mouse stop"
+  ],
   "author": "Tiago Mota Santos",
   "license": "MIT"
 }
