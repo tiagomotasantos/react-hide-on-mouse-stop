@@ -7,7 +7,7 @@ Hides content after the mouse stops moving for a certain amount of time.
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE.md)
 [![npm latest package](https://img.shields.io/npm/v/react-hide-on-mouse-stop/latest.svg)](https://www.npmjs.com/package/react-hide-on-mouse-stop)
 
-![example](https://github.com/tiagomotasantos/react-hide-on-mouse-stop/blob/main/react-hide-on-mouse-stop.gif)
+![example](https://github.com/tiagomotasantos/react-hide-on-mouse-stop/blob/main/react-hide-on-mouse-stop.gif?raw=true)
 
 </div>
 
