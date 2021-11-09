@@ -51,7 +51,7 @@ export default App;
 
 ## `useHide` hook
 
-By default react-hide adds an extra container around your content, if you want avoid that and have more control over the behavior of the hide process you can take advantage of `useHide` hook, it's a bit more verbose and has less functionality but serves the same purpose. 
+By default react-hide adds an extra container around your content, if you want to avoid that and have more control over the behavior of the hide process you can take advantage of `useHide` hook, it's a bit more verbose and has less functionality but serves the same purpose. 
 Take a look at the example bellow:
 
 ```jsx
