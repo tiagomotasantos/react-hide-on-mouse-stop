@@ -59,7 +59,7 @@
     "type": "git",
     "url": "git+https://github.com/tiagomotasantos/react-hide.git"
   },
-  "description": "Hide your component after the mouse stops moving.",
+  "description": "Hides content after the mouse stops moving for a certain amount of time.",
   "bugs": {
     "url": "https://github.com/tiagomotasantos/react-hide/issues"
   },
