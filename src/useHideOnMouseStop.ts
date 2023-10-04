@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
 let timer: NodeJS.Timeout;
 
@@ -18,6 +18,7 @@ export const useHideOnMouseStop = ({
   showOnlyOnContainerHover = false,
 }: UseHideOnMouseStopProps): UseHideOnMouseStopReturn => {
   const [hide, setHide] = useState(initialHide);
+  const mountedRef = useRef(false);
   const [hover, setHover] = useState(false);
   const toggleVisibility = useCallback((hide: boolean, cursor: string) => {
     setHide(hide);
@@ -30,7 +31,7 @@ export const useHideOnMouseStop = ({
   const onMouseMove = useCallback(() => {
     clearTimeout(timer);
 
-    if (hide) {
+    if (hide && mountedRef.current) {
       if (showOnlyOnContainerHover && hover) {
         toggleVisibility(!hide, 'default');
       } else if (!showOnlyOnContainerHover) {
@@ -39,11 +40,19 @@ export const useHideOnMouseStop = ({
     }
 
     timer = setTimeout(() => {
-      if (!hover) {
+      if (!hover && mountedRef.current) {
         toggleVisibility(true, 'none');
       }
     }, delay);
   }, [hide, hover, setHide]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
